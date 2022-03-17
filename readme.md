@@ -1,5 +1,3 @@
-// поскольку нужно создать большой файл (1.3GB) + обработать его, то это может занять некоторое время (в целом 1-2 min)
-
 ### Prerequsites
 You need node.js (version preferably LTS version), npm or yarn to be installed
 
@@ -9,6 +7,10 @@ You need node.js (version preferably LTS version), npm or yarn to be installed
 2.  Then run *yarn dev* or *npm run dev*
 3. Create .env (*touch .env*) file, and move all data from .envExample to .env file (*cat .envExample >> .env*)
 4. By default, the server will run at a port 3000, but you can change default port in env file
+
+### Running tests
+
+*yarn test* or *npm run test*. Since in the test files you need to create a large file (approximately 1.3GB) and process the data from it, running tests may take some time (generally 1-2 min).
 
 ### Table which shows singe endpoint
 

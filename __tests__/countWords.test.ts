@@ -1,6 +1,6 @@
 import { countWordsAlgo } from "../utils/wordsAlgorithm";
 
-describe("countWords", () => {
+describe("countWords functionality", () => {
   it("counting words", async () => {
     const mapWords = countWordsAlgo("one two three one one two two three");
 

@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
   busboy({
-    highWaterMark: 4 * 1024 * 1024, // Set 4MB buffer
+    highWaterMark: 200 * 1024 * 1024, // Set 4MB buffer
     limits: {
       // we are not throwing an error, when we reaching the limit
       // rather, we stop reading the file and show results, after reaching the limit

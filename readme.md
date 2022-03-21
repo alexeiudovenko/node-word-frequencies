@@ -1,5 +1,5 @@
 ### Prerequsites
-You need node.js (version preferably LTS version), npm or yarn to be installed
+You need node.js (preferably LTS version and at least Node.js ≥ v10.5.0), npm or yarn to be installed
 
 ### Steps to reproduce locally
 
@@ -10,7 +10,7 @@ You need node.js (version preferably LTS version), npm or yarn to be installed
 
 ### Running tests
 
-*yarn test* or *npm run test*. Since in the test files you need to create a large file (approximately 1.3GB) and process the data from it, running tests may take some time (generally 1-2 min).
+*yarn test* or *npm run test*. Since in the test files you need to create a large file (approximately 1.3GB) and process the data from it, running tests may take some time (generally 15-20s).
 
 ### Table which shows singe endpoint
 

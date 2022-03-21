@@ -10,13 +10,13 @@ const WordFrequenciesController = {
     let maxCountOfWordsMap = {};
     let maxCount = 0;
     let dataBuffer: Buffer[] = [];
-    let idx = 0;
+    let buffersCount = 0;
     let restText = "";
     let [currentTextProcessedCount, textesToProcessCount] = [0, 0];
 
     const handleDataReadingEnd = () => {
       if (currentTextProcessedCount !== textesToProcessCount) {
-        setTimeout(handleDataReadingEnd, 200); //wait 50 millisecnds then recheck
+        setTimeout(handleDataReadingEnd, 200); // wait 200 millisecnds then recheck
         return;
       }
       if (dataBuffer.length > 0) {
@@ -52,13 +52,17 @@ const WordFrequenciesController = {
       }
 
       file.on("data", (data) => {
-        if (idx % 100 === 0) {
+        // 100 - could be customizable
+        if (buffersCount % 100 === 0) {
           textesToProcessCount++;
           let textFragment = restText.concat(
             Buffer.concat(dataBuffer).toString("utf8")
           );
 
           const lastIdx = textFragment.lastIndexOf(".");
+          // When we are reading stream (utf-8) we may break some words, thus
+          // algorithm won't work properly
+          // restText is used to fix this issue
           restText = textFragment.slice(lastIdx + 1);
           pool
             .exec(countWordsAlgo, [textFragment.slice(0, lastIdx + 1)])
@@ -69,7 +73,7 @@ const WordFrequenciesController = {
             .catch((err) => next(err));
           dataBuffer = [];
         }
-        idx++;
+        buffersCount++;
         dataBuffer.push(data);
       });
 
